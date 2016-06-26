@@ -1,56 +1,59 @@
 import Webiny from 'Webiny';
-import LayoutModalForm from './LayoutModalForm';
+import TemplateModalForm from './TemplateModalForm';
 const Ui = Webiny.Ui.Components;
 const Table = Ui.List.Table;
 
-class LayoutList extends Webiny.Ui.View {
+class TemplateList extends Webiny.Ui.View {
 }
 
-LayoutList.defaultProps = {
+TemplateList.defaultProps = {
 
     renderer() {
         const listProps = {
-            api: '/entities/cms/layout',
+            api: '/entities/cms/template',
             fields: '*',
             searchFields: 'name',
             connectToRouter: true,
-            ui: 'layoutList',
+            ui: 'templateList',
             query: {
-                theme: Webiny.Router.getParams('id'),
+                layout: Webiny.Router.getParams('id'),
                 '_sort': 'name'
             },
             perPage: 1000
         };
 
         const layoutProps = {
-            api: '/entities/cms/theme',
+            api: '/entities/cms/layout',
             url: Webiny.Router.getParams('id'),
-            ui: 'layout'
+            ui: 'layout',
+            fields: '*, theme.*'
         };
 
         const searchProps = {
-            placeholder: 'Search by layout name',
+            placeholder: 'Search by template name',
             name: '_searchQuery'
         };
 
         return (
             <Ui.ViewSwitcher.Container>
-                <Ui.ViewSwitcher.View view="layoutListView" defaultView>
+                <Ui.ViewSwitcher.View view="templateListView" defaultView>
                     {showView => (
                         <view>
 
                             <Ui.Data {...layoutProps} >
                                 {data => (
                                     <Ui.View.List>
-                                        <Ui.View.Header title="Layouts" description={'Theme: ' + _.get(data, 'name')}>
+                                        <Ui.View.Header title="Templates"
+                                                        description={'Layout: ' + _.get(data, 'theme.name') + ' / ' + _.get(data, 'name')}>
 
                                             <Ui.Button type="primary" align="right"
-                                                       onClick={showView('layoutModalFormView')}
+                                                       onClick={showView('templateModalFormView')}
                                                        icon="icon-plus-circled">
-                                                New Layout
+                                                New Template
                                             </Ui.Button>
-                                            <Ui.Link type="default" align="right" route="Cms.Theme.ThemeList">
-                                                Back to Themes
+                                            <Ui.Link type="default" align="right" route="Cms.Theme.LayoutList"
+                                                     params={{'id':_.get(data, 'theme.id')}}>
+                                                Back to Layouts
                                             </Ui.Link>
 
                                         </Ui.View.Header>
@@ -63,13 +66,15 @@ LayoutList.defaultProps = {
                                                 </Ui.List.FormFilters>
                                                 <Table.Table>
                                                     <Table.Row>
-                                                        <Table.Field name="name" align="left" label="Name" sort="name" route="Cms.Theme.TemplateList"/>
+                                                        <Table.Field name="name" align="left" label="Name" sort="name"/>
                                                         <Table.TimeAgoField name="createdOn" align="left"
                                                                             label="Created On"
                                                                             sort="createdOn"/>
                                                         <Table.Actions>
                                                             <Table.EditAction label="Edit"
-                                                                              onClick={showView('layoutModalFormView')}/>
+                                                                              onClick={showView('templateModalFormView')}/>
+                                                            <Table.Action label="View Compiled Template"
+                                                                              onClick={showView('templateModalFormView')}/>
                                                             <Table.DeleteAction/>
                                                         </Table.Actions>
                                                     </Table.Row>
@@ -85,8 +90,8 @@ LayoutList.defaultProps = {
                     )}
                 </Ui.ViewSwitcher.View>
 
-                <Ui.ViewSwitcher.View view="layoutModalFormView" modal>
-                    {(showView, data) => <LayoutModalForm ui="layoutModal" {...{showView, data}} />}
+                <Ui.ViewSwitcher.View view="templateModalFormView" modal>
+                    {(showView, data) => <TemplateModalForm ui="templateModal" {...{showView, data}} />}
                 </Ui.ViewSwitcher.View>
 
             </Ui.ViewSwitcher.Container>
@@ -95,4 +100,4 @@ LayoutList.defaultProps = {
     }
 };
 
-export default LayoutList;
+export default TemplateList;

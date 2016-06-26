@@ -14,7 +14,8 @@ class CmsTheme extends Webiny.Module {
 
         this.registerRoutes(
             new Webiny.Route('Cms.Theme.ThemeList', '/cms/themes', Views.ThemeList, 'CMS - Themes'),
-            new Webiny.Route('Cms.Theme.LayoutList', '/cms/theme/layout/:id', Views.LayoutList, 'CMS - Layouts')
+            new Webiny.Route('Cms.Theme.LayoutList', '/cms/theme/layout/:id', Views.LayoutList, 'CMS - Layouts'),
+            new Webiny.Route('Cms.Theme.TemplateList', '/cms/theme/template/:id', Views.TemplateList, 'CMS - Templates')
         );
     }
 }

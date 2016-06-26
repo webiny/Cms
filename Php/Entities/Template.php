@@ -7,20 +7,20 @@ use Apps\Core\Php\DevTools\Exceptions\AppException;
 use Webiny\Component\Entity\EntityException;
 
 /**
- * Class Layout
+ * Class Template
  *
  * @property string $name
  * @property string $content
- * @property Theme  $theme
+ * @property Layout $layout
  *
  * @package Apps\Core\Php\Entities
  *
  */
-class Layout extends EntityAbstract
+class Template extends EntityAbstract
 {
     use DevToolsTrait;
 
-    protected static $entityCollection = 'CmsLayout';
+    protected static $entityCollection = 'CmsTemplate';
     protected static $entityMask = '{name}';
 
     public function __construct()
@@ -55,7 +55,7 @@ class Layout extends EntityAbstract
 
             // check that required elements are present
             foreach ($keys as $k => $required) {
-                if($required && empty($contentObject[$k])){
+                if ($required && empty($contentObject[$k])) {
                     throw new AppException(sprintf('Layout key "%s" is required.', $k));
                 }
             }
@@ -66,7 +66,26 @@ class Layout extends EntityAbstract
             return $content;
         })->setAfterPopulate();
 
-        $theme = '\Apps\Cms\Php\Entities\Theme';
-        $this->attr('theme')->many2one('Theme')->setEntity($theme)->setValidators('required');
+        $layout = '\Apps\Cms\Php\Entities\Layout';
+        $this->attr('layout')->many2one('Layout')->setEntity($layout)->setValidators('required');
+
+
+        $this->api('get', 'compile', function (Template $template) {
+            $this->compileTemplate($template);
+        });
+
     }
+
+    /**
+     * Merges the template with the layout and returns the result as a JSON object.
+     *
+     * @param Template $t
+     */
+    public function compileTemplate(Template $t)
+    {
+
+        //todo
+
+    }
+
 }
