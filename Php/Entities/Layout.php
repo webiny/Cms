@@ -3,6 +3,7 @@ namespace Apps\Cms\Php\Entities;
 
 use Apps\Core\Php\DevTools\DevToolsTrait;
 use Apps\Core\Php\DevTools\Entity\EntityAbstract;
+use Apps\Core\Php\DevTools\Exceptions\AppException;
 use Webiny\Component\Entity\EntityException;
 
 /**
@@ -42,7 +43,7 @@ class Layout extends EntityAbstract
             // check json object
             $contentObject = json_decode($content, true);
             if (!$contentObject) {
-                throw new EntityException('Layout content is not a proper JSON object.');
+                throw new AppException('Layout content is not a proper JSON object.', 'INVALID_JSON');
             }
 
             // check that all defined keys are part of the layout structure
