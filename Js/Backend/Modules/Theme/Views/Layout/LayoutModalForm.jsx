@@ -25,6 +25,9 @@ class LayoutModalForm extends Webiny.Ui.ModalComponent {
                             <Ui.Grid.Row>
                                 <Ui.Grid.Col all={12}>
                                     <Ui.Form.Error/>
+                                    <Ui.Input label="Name" name="name" validate="required"/>
+                                </Ui.Grid.Col>
+                                <Ui.Grid.Col all={12}>
                                     <Ui.CodeEditor label="Content" name="content" validate="required" mode="javascript" />
                                 </Ui.Grid.Col>
                             </Ui.Grid.Row>

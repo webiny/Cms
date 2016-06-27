@@ -47,6 +47,8 @@ ThemeList.defaultProps = {
                                                 <Table.TimeAgoField name="createdOn" align="left" label="Created On"
                                                                     sort="createdOn"/>
                                                 <Table.Actions>
+                                                    <Table.Action label="Export"
+                                                                  onClick={showView('compiledTemplateView')}/>
                                                     <Table.EditAction label="Edit"
                                                                       onClick={showView('themeModalFormView')}/>
                                                     <Table.DeleteAction/>

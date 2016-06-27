@@ -1,6 +1,7 @@
 <?php
 namespace Apps\Cms\Php\Entities;
 
+use Apps\Cms\Php\Lib\CompiledTemplate;
 use Apps\Core\Php\DevTools\DevToolsTrait;
 use Apps\Core\Php\DevTools\Entity\EntityAbstract;
 use Apps\Core\Php\DevTools\Exceptions\AppException;
@@ -70,8 +71,8 @@ class Template extends EntityAbstract
         $this->attr('layout')->many2one('Layout')->setEntity($layout)->setValidators('required');
 
 
-        $this->api('get', 'compile', function (Template $template) {
-            $this->compileTemplate($template);
+        $this->api('get', 'compile/{template}', function (Template $template) {
+            return $this->compileTemplate($template);
         });
 
     }
@@ -80,12 +81,16 @@ class Template extends EntityAbstract
      * Merges the template with the layout and returns the result as a JSON object.
      *
      * @param Template $t
+     *
+     * @return array
+     * @throws AppException
      */
     public function compileTemplate(Template $t)
     {
 
-        //todo
+        $compiledTemplate = new CompiledTemplate($t);
 
+        return ['content'=>json_encode($compiledTemplate->getTemplateDefinition(), JSON_PRETTY_PRINT)];
     }
 
 }

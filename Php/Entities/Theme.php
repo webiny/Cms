@@ -35,4 +35,14 @@ class Theme extends EntityAbstract
         $this->attr('authorName')->char()->setRequired()->setToArrayDefault();
         $this->attr('authorEmail')->char()->setValidators(['email'])->setToArrayDefault();
     }
+
+    public function export(Theme $t)
+    {
+        // todo
+    }
+
+    public function import()
+    {
+        // todo
+    }
 }

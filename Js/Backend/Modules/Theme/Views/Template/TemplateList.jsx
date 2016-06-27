@@ -1,5 +1,6 @@
 import Webiny from 'Webiny';
 import TemplateModalForm from './TemplateModalForm';
+import CompiledTemplateModal from './CompiledTemplateModal';
 const Ui = Webiny.Ui.Components;
 const Table = Ui.List.Table;
 
@@ -74,7 +75,7 @@ TemplateList.defaultProps = {
                                                             <Table.EditAction label="Edit"
                                                                               onClick={showView('templateModalFormView')}/>
                                                             <Table.Action label="View Compiled Template"
-                                                                              onClick={showView('templateModalFormView')}/>
+                                                                          onClick={showView('compiledTemplateView')}/>
                                                             <Table.DeleteAction/>
                                                         </Table.Actions>
                                                     </Table.Row>
@@ -92,6 +93,10 @@ TemplateList.defaultProps = {
 
                 <Ui.ViewSwitcher.View view="templateModalFormView" modal>
                     {(showView, data) => <TemplateModalForm ui="templateModal" {...{showView, data}} />}
+                </Ui.ViewSwitcher.View>
+
+                <Ui.ViewSwitcher.View view="compiledTemplateView" modal>
+                    {(showView, data) => <CompiledTemplateModal ui="compiledTemplateModal" {...{showView, data}} />}
                 </Ui.ViewSwitcher.View>
 
             </Ui.ViewSwitcher.Container>
