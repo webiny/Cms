@@ -13,7 +13,11 @@ class LayoutModalForm extends Webiny.Ui.ModalComponent {
             api: '/entities/cms/layout',
             fields: '*',
             defaultModel: _.merge({}, {theme: Webiny.Router.getParams('id')}, this.props.data),
-            onSubmitSuccess: this.props.showView('layoutListView')
+            onSubmitSuccess: () => {
+                this.refs.dialog.hide().then(() => {
+                    this.props.showView('layoutListView');
+                });
+            }
         };
 
         return (

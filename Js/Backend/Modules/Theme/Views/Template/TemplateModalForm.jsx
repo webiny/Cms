@@ -13,7 +13,11 @@ class TemplateModalForm extends Webiny.Ui.ModalComponent {
             api: '/entities/cms/template',
             fields: '*',
             defaultModel: _.merge({}, {layout: Webiny.Router.getParams('id')}, this.props.data),
-            onSubmitSuccess: this.props.showView('templateListView')
+            onSubmitSuccess: () => {
+                this.refs.dialog.hide().then(() => {
+                    this.props.showView('templateListView')
+                });
+            }
         };
 
         return (

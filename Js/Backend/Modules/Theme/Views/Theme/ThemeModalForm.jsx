@@ -13,7 +13,11 @@ class ThemeModalForm extends Webiny.Ui.ModalComponent {
             api: '/entities/cms/theme',
             fields: '*',
             defaultModel: _.merge({type: 'custom'}, {theme: Webiny.Router.getParams('id')}, this.props.data),
-            onSubmitSuccess: this.props.showView('themeListView')
+            onSubmitSuccess: () => {
+                this.refs.dialog.hide().then(() => {
+                    this.props.showView('themeListView');
+                });
+            }
         };
 
         return (
