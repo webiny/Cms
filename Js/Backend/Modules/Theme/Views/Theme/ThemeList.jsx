@@ -1,5 +1,7 @@
 import Webiny from 'Webiny';
 import ThemeModalForm from './ThemeModalForm';
+import ThemeExportModal from './ThemeExportModal';
+import ThemeImportModal from './ThemeImportModal';
 const Ui = Webiny.Ui.Components;
 const Table = Ui.List.Table;
 
@@ -33,6 +35,10 @@ ThemeList.defaultProps = {
                                                onClick={showView('themeModalFormView')} icon="icon-plus-circled">
                                         New Theme
                                     </Ui.Button>
+                                    <Ui.Button type="secondary" align="right"
+                                               onClick={showView('themeImportView')} icon="icon-upload">
+                                        Import Theme
+                                    </Ui.Button>
                                 </Ui.View.Header>
                                 <Ui.View.Body>
                                     <Ui.List.ApiContainer {...listProps}>
@@ -43,12 +49,13 @@ ThemeList.defaultProps = {
                                         </Ui.List.FormFilters>
                                         <Table.Table>
                                             <Table.Row>
-                                                <Table.Field name="name" align="left" label="Name" sort="name" route="Cms.Theme.LayoutList"/>
+                                                <Table.Field name="name" align="left" label="Name" sort="name"
+                                                             route="Cms.Theme.LayoutList"/>
                                                 <Table.TimeAgoField name="createdOn" align="left" label="Created On"
                                                                     sort="createdOn"/>
                                                 <Table.Actions>
                                                     <Table.Action label="Export"
-                                                                  onClick={showView('compiledTemplateView')}/>
+                                                                  onClick={showView('themeExportView')}/>
                                                     <Table.EditAction label="Edit"
                                                                       onClick={showView('themeModalFormView')}/>
                                                     <Table.DeleteAction/>
@@ -66,6 +73,14 @@ ThemeList.defaultProps = {
 
                 <Ui.ViewSwitcher.View view="themeModalFormView" modal>
                     {(showView, data) => <ThemeModalForm ui="themeModal" {...{showView, data}} />}
+                </Ui.ViewSwitcher.View>
+
+                <Ui.ViewSwitcher.View view="themeExportView" modal>
+                    {(showView, data) => <ThemeExportModal ui="themeExportModal" {...{showView, data}} />}
+                </Ui.ViewSwitcher.View>
+
+                <Ui.ViewSwitcher.View view="themeImportView" modal>
+                    {(showView, data) => <ThemeImportModal ui="themeImportModal" {...{showView}} />}
                 </Ui.ViewSwitcher.View>
 
             </Ui.ViewSwitcher.Container>
