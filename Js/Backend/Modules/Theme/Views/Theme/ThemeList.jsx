@@ -28,46 +28,44 @@ ThemeList.defaultProps = {
             <Ui.ViewSwitcher.Container>
                 <Ui.ViewSwitcher.View view="themeListView" defaultView>
                     {showView => (
-                        <view>
-                            <Ui.View.List>
-                                <Ui.View.Header title="Themes">
-                                    <Ui.Button type="primary" align="right"
-                                               onClick={showView('themeModalFormView')} icon="icon-plus-circled">
-                                        New Theme
-                                    </Ui.Button>
-                                    <Ui.Button type="secondary" align="right"
-                                               onClick={showView('themeImportView')} icon="icon-upload">
-                                        Import Theme
-                                    </Ui.Button>
-                                </Ui.View.Header>
-                                <Ui.View.Body>
-                                    <Ui.List.ApiContainer {...listProps}>
-                                        <Ui.List.FormFilters>
-                                            {(applyFilters) => (
-                                                <Ui.Input {...searchProps} onEnter={applyFilters()}/>
-                                            )}
-                                        </Ui.List.FormFilters>
-                                        <Table.Table>
-                                            <Table.Row>
-                                                <Table.Field name="name" align="left" label="Name" sort="name"
-                                                             route="Cms.Theme.LayoutList"/>
-                                                <Table.TimeAgoField name="createdOn" align="left" label="Created On"
-                                                                    sort="createdOn"/>
-                                                <Table.Actions>
-                                                    <Table.Action label="Export"
-                                                                  onClick={showView('themeExportView')}/>
-                                                    <Table.EditAction label="Edit"
-                                                                      onClick={showView('themeModalFormView')}/>
-                                                    <Table.DeleteAction/>
-                                                </Table.Actions>
-                                            </Table.Row>
-                                            <Table.Footer/>
-                                        </Table.Table>
-                                        <Ui.List.Pagination/>
-                                    </Ui.List.ApiContainer>
-                                </Ui.View.Body>
-                            </Ui.View.List>
-                        </view>
+                        <Ui.View.List>
+                            <Ui.View.Header title="Themes">
+                                <Ui.Button type="primary" align="right"
+                                           onClick={showView('themeModalFormView')} icon="icon-plus-circled">
+                                    New Theme
+                                </Ui.Button>
+                                <Ui.Button type="secondary" align="right"
+                                           onClick={showView('themeImportView')} icon="icon-upload">
+                                    Import Theme
+                                </Ui.Button>
+                            </Ui.View.Header>
+                            <Ui.View.Body>
+                                <Ui.List.ApiContainer {...listProps}>
+                                    <Ui.List.FormFilters>
+                                        {(applyFilters) => (
+                                            <Ui.Input {...searchProps} onEnter={applyFilters()}/>
+                                        )}
+                                    </Ui.List.FormFilters>
+                                    <Table.Table>
+                                        <Table.Row>
+                                            <Table.Field name="name" align="left" label="Name" sort="name"
+                                                         route="Cms.Theme.LayoutList"/>
+                                            <Table.TimeAgoField name="createdOn" align="left" label="Created On"
+                                                                sort="createdOn"/>
+                                            <Table.Actions>
+                                                <Table.Action label="Export"
+                                                              onClick={showView('themeExportView')}/>
+                                                <Table.EditAction label="Edit"
+                                                                  onClick={showView('themeModalFormView')}/>
+                                                <Table.DeleteAction/>
+                                            </Table.Actions>
+                                        </Table.Row>
+                                        <Table.Footer/>
+                                    </Table.Table>
+                                    <Ui.List.Pagination/>
+                                </Ui.List.ApiContainer>
+                            </Ui.View.Body>
+                        </Ui.View.List>
                     )}
                 </Ui.ViewSwitcher.View>
 

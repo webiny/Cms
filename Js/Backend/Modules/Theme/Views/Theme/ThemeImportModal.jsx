@@ -3,21 +3,18 @@ const Ui = Webiny.Ui.Components;
 
 class ThemeImportModal extends Webiny.Ui.ModalComponent {
 
-    render() {
+    renderDialog() {
         const themeProps = {
             ui: 'importTheme',
             api: '/entities/cms/theme/import-theme',
             fields: '*',
             onSubmitSuccess: () => {
-                this.refs.dialog.hide().then(() => {
-                    this.props.showView('themeListView');
-                    this.ui('themeList').loadData();
-                });
+                this.hide().then(this.props.showView('themeListView'));
             }
         };
 
         return (
-            <Ui.Modal.Dialog ref="dialog">
+            <Ui.Modal.Dialog>
                 <Ui.Modal.Header title="Import Theme"/>
                 <Ui.Modal.Body>
                     <Ui.Form.Container {...themeProps}>

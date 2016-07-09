@@ -3,7 +3,7 @@ const Ui = Webiny.Ui.Components;
 
 class ThemeExportModal extends Webiny.Ui.ModalComponent {
 
-    render() {
+    renderDialog() {
         const themeProps = {
             ui: 'compiledTheme',
             loadModel: () => {
@@ -14,7 +14,7 @@ class ThemeExportModal extends Webiny.Ui.ModalComponent {
         };
 
         return (
-            <Ui.Modal.Dialog ref="dialog">
+            <Ui.Modal.Dialog>
                 <Ui.Modal.Header title="Export Theme"/>
                 <Ui.Modal.Body>
                     <Ui.Form.Container {...themeProps}>
