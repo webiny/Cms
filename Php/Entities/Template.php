@@ -3,7 +3,7 @@ namespace Apps\Cms\Php\Entities;
 
 use Apps\Cms\Php\Lib\CompiledTemplate;
 use Apps\Core\Php\DevTools\DevToolsTrait;
-use Apps\Core\Php\DevTools\Entity\EntityAbstract;
+use Apps\Core\Php\DevTools\Entity\AbstractEntity;
 use Apps\Core\Php\DevTools\Exceptions\AppException;
 use Webiny\Component\Entity\EntityException;
 
@@ -17,7 +17,7 @@ use Webiny\Component\Entity\EntityException;
  * @package Apps\Core\Php\Entities
  *
  */
-class Template extends EntityAbstract
+class Template extends AbstractEntity
 {
     use DevToolsTrait;
 

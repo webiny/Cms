@@ -2,7 +2,7 @@
 namespace Apps\Cms\Php\Entities;
 
 use Apps\Core\Php\DevTools\DevToolsTrait;
-use Apps\Core\Php\DevTools\Entity\EntityAbstract;
+use Apps\Core\Php\DevTools\Entity\AbstractEntity;
 use Apps\Core\Php\DevTools\Exceptions\AppException;
 
 /**
@@ -18,7 +18,7 @@ use Apps\Core\Php\DevTools\Exceptions\AppException;
  * @package Apps\Core\Php\Entities
  *
  */
-class Theme extends EntityAbstract
+class Theme extends AbstractEntity
 {
     use DevToolsTrait;
 
