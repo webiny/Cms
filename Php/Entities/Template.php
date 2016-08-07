@@ -2,7 +2,7 @@
 namespace Apps\Cms\Php\Entities;
 
 use Apps\Cms\Php\Lib\CompiledTemplate;
-use Apps\Core\Php\DevTools\DevToolsTrait;
+use Apps\Core\Php\DevTools\WebinyTrait;
 use Apps\Core\Php\DevTools\Entity\AbstractEntity;
 use Apps\Core\Php\DevTools\Exceptions\AppException;
 use Webiny\Component\Entity\EntityException;
@@ -19,7 +19,7 @@ use Webiny\Component\Entity\EntityException;
  */
 class Template extends AbstractEntity
 {
-    use DevToolsTrait;
+    use WebinyTrait;
 
     protected static $entityCollection = 'CmsTemplate';
     protected static $entityMask = '{name}';

@@ -1,7 +1,7 @@
 <?php
 namespace Apps\Cms\Php\Entities;
 
-use Apps\Core\Php\DevTools\DevToolsTrait;
+use Apps\Core\Php\DevTools\WebinyTrait;
 use Apps\Core\Php\DevTools\Entity\AbstractEntity;
 use Apps\Core\Php\DevTools\Exceptions\AppException;
 
@@ -20,7 +20,7 @@ use Apps\Core\Php\DevTools\Exceptions\AppException;
  */
 class Theme extends AbstractEntity
 {
-    use DevToolsTrait;
+    use WebinyTrait;
 
     protected static $entityCollection = 'CmsTheme';
     protected static $entityMask = '{name}';
